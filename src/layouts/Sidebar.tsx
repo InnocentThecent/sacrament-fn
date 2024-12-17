@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { FaChartPie } from "react-icons/fa";
 import { HiUsers } from "react-icons/hi2";
@@ -23,14 +23,13 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
   const { logout } = useContext(UserContext);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  
+
   const signOut = () => {
     dispatch(logoutAction());
     logout();
-    navigate('/login')
+    navigate("/login");
   };
 
- 
   return (
     <div
       className={`${style} transition ease-in-out duration-100 flex-col shadow-sm fixed h-[100%] w-1/3 md:w-1/5
@@ -84,14 +83,14 @@ function Sidebar({ style, toggle }: { style: string; toggle: () => void }) {
           <BiFolderMinus className="w-5 mt-1" />
         </SideNavLink>
         <CheckRole roles={["CHRISTIAN"]}>
-        <SideNavLink
-          onClick={toggle}
-          name="Offerings"
-          to="/dashboard/offerings"
-        >
-          <BiDonateHeart className="w-5 mt-1" />
-        </SideNavLink>
-</CheckRole>
+          <SideNavLink
+            onClick={toggle}
+            name="Offerings"
+            to="/dashboard/offerings"
+          >
+            <BiDonateHeart className="w-5 mt-1" />
+          </SideNavLink>
+        </CheckRole>
         <SideNavLink onClick={toggle} name="Settings" to="/dashboard/settings">
           <CogIcon className="w-5 mt-1 " />
         </SideNavLink>

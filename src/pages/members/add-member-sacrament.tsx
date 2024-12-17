@@ -51,7 +51,9 @@ const AddNewMemberSacrament = ({
       return;
     }
     if (new Date(createFieldState?.date) > new Date()) {
-      toast.error(t("Sacrament has to have been given, it can't be in future"));
+      return toast.error(
+        t("Sacrament has to have been given, it can't be in future")
+      );
     }
 
     const formData = {

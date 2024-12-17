@@ -20,6 +20,8 @@ type inputProps = {
   placeholder: string;
   disabled?: boolean;
   defaultValue: any;
+  min?: number;
+  max?: number;
 };
 
 function Input({
@@ -34,6 +36,8 @@ function Input({
   defaultValue,
   disabled,
   handleChange,
+  min,
+  max,
 }: inputProps & DefaultProps) {
   const { t } = useTranslation();
   return (
@@ -54,6 +58,8 @@ function Input({
         onChange={handleChange}
         required={isRequired}
         disabled={disabled}
+        min={min}
+        max={max}
       />
     </div>
   );

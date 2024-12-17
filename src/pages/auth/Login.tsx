@@ -129,10 +129,10 @@ const Login = () => {
                 >
                   <div className="flex">
                     <h4 className="text-lg font-bold text-red-400 uppercase ">
-                      PS
+                      PEC
                     </h4>
                     <h4 className="text-lg font-bold  uppercase text-[#2720FF]">
-                      MS
+                      TS
                     </h4>
                   </div>
                 </Tooltip>

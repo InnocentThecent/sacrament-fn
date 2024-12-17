@@ -26,6 +26,8 @@ import { GiTakeMyMoney } from "react-icons/gi";
 
 import PaymentModal from "./payment";
 import generateCard from "../../utils/generateCard";
+import GenerateReportsModal from "./generate-reports";
+import ViewApplication from "./view-application";
 
 const fieldState: fields = {};
 userFields.forEach((field) => {
@@ -41,6 +43,8 @@ export default function Applications() {
   let [reject, setReject] = useState(false);
   let [cancel, setCancel] = useState(false);
   let [pay, setPay] = useState(false);
+  let [generateReport, setGenerateReport] = useState(false);
+  let [view, setView] = useState(false);
 
   const [selectedApplication, setSelectedApplication] =
     useState<Application | null>(null);
@@ -57,34 +61,6 @@ export default function Applications() {
 
   const generateData = () => {
     return data?.application;
-  };
-
-  const generateReport = () => {
-    generatePDF({
-      columns: [
-        "First Name",
-        "Last Name",
-        "Phone Number",
-        "email",
-        "Service",
-        "Date",
-        "Status",
-        "Offering Amount",
-        "Mass Date",
-      ],
-      title: "Service Request Applications",
-      data: data?.application?.map((app: Application) => [
-        app?.christian?.user?.firstName,
-        app?.christian?.user?.lastName,
-        app?.christian?.user?.telephone,
-        app?.christian?.user?.email,
-        app?.type,
-        new Date(app?.createdAt).toLocaleDateString(),
-        app?.status?.split("_").join(" "),
-        app?.sacramentAmount ?? "N/A",
-        app?.burialDate ? new Date(app?.burialDate) : "N/A",
-      ]),
-    });
   };
 
   const generateSacramentCard = async (application: Application) => {
@@ -181,7 +157,7 @@ export default function Applications() {
                   className={"flex ml-6" + (approved ? "" : " hidden")}
                   onClick={() => {
                     setSelectedApplication(row.original?.id);
-                    // handleDeleteModal();
+                    setView(true);
                   }}
                 >
                   <Tooltip message={t(`View Application`)}>
@@ -321,8 +297,18 @@ export default function Applications() {
             onClose={() => setPay(false)}
             application={selectedApplication}
           />
+          <ViewApplication
+            isOpen={view}
+            onClose={() => setView(false)}
+            application={selectedApplication}
+          />
         </>
       )}
+      <GenerateReportsModal
+        isOpen={generateReport}
+        onClose={() => setGenerateReport(false)}
+        applications={data?.application}
+      />
       <NewApplication
         isOpen={apply}
         onClose={() => setApply(false)}
@@ -359,7 +345,7 @@ export default function Applications() {
             <Button
               variant="primary"
               size="md"
-              onClick={generateReport}
+              onClick={() => setGenerateReport(true)}
               style=" p-2 flex ml-auto rounded-sm text-white ml-10 border bg-primary text-white hover:border-primary hover:bg-white hover:text-primary shadow-sm 
              duration-300 ease-in-out transition-all"
             >

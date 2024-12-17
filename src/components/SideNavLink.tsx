@@ -25,7 +25,7 @@ const SideNavLink: React.FC<SideNavLinkProps> = ({
   end,
   ...props
 }) => {
-  const {t} =useTranslation()
+  const { t } = useTranslation();
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   const toggleSubMenu = () => {
@@ -45,7 +45,7 @@ const SideNavLink: React.FC<SideNavLinkProps> = ({
           if (navData.isActive) {
             return "py-3 px-2 font-bold rounded-bl-lg text-center  flex flex-row  bg-gray-200 text-primary border-r-4 border-r-primary";
           }
-          return `py-3 px-2 flex font-bold flex-row  rounded-bl-lg  text-[#526484] hover:bg-gray-200 hover:text-primary transition-all ease-in-out duration-400 ${
+          return `py-3 px-2 flex font-bold flex-row  rounded-bl-lg  text-primary hover:bg-gray-200 hover:text-primary transition-all ease-in-out duration-400 ${
             navData.isActive ? "navActive" : ""
           }`;
         }}

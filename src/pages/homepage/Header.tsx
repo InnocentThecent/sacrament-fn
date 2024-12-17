@@ -99,7 +99,7 @@ export default function Header() {
                 >
                   <div className="row">
                     <div className="get-quote">
-                      <Link to="/login" className="btn">
+                      <Link to="/login" className="btn :hover:bg-red-600">
                         {t("Login")}
                       </Link>
                     </div>

@@ -15,6 +15,7 @@ const PayOfferings = ({ isOpen, onClose }: IProps) => {
 
   const [telephone, setTelephone] = useState("");
   const [amount, setAmount] = useState(0);
+  const [year, setYear] = useState(new Date().getFullYear());
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,6 +41,11 @@ const PayOfferings = ({ isOpen, onClose }: IProps) => {
       toast.error("Telephone should start with 078, 072, 073 or 079");
       return;
     }
+
+    if (year < 1900 || year > new Date().getFullYear()) {
+      toast.error("Year should be between 1900 and current year");
+      return;
+    }
     try {
       await dispatch(
         createApiData({
@@ -47,6 +53,7 @@ const PayOfferings = ({ isOpen, onClose }: IProps) => {
           body: {
             telephone,
             amount,
+            year,
           },
         })
       ).unwrap();
@@ -105,6 +112,23 @@ const PayOfferings = ({ isOpen, onClose }: IProps) => {
               id="amount"
               defaultValue={amount}
               name="amount"
+              customClass=""
+            />
+            <Input
+              key="year"
+              type="number"
+              placeholder={t("Enter Year")}
+              labelFor="year"
+              labelText="Year"
+              handleChange={(e) => {
+                setYear(e.target.value as unknown as number);
+              }}
+              isRequired={true}
+              id="year"
+              defaultValue={year}
+              min={1900}
+              max={new Date().getFullYear()}
+              name="year"
               customClass=""
             />
           </div>

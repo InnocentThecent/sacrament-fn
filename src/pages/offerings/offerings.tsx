@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hook";
 import Table from "../../components/Table";
 import { userFields } from "../../constants/formFields";
-import { Application, fields } from "../../types";
+import { Application, fields, Offering } from "../../types";
 import { fetchApiData } from "../../redux/features";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
@@ -14,6 +14,8 @@ import { CalculatorIcon } from "@heroicons/react/20/solid";
 import CalculateOfferings from "./calculate-offerings";
 import { BiDonateHeart } from "react-icons/bi";
 import PayOfferings from "./pay-offerings";
+import { FaFileAlt } from "react-icons/fa";
+import generatePDF from "../../utils/generatePdf";
 
 const fieldState: fields = {};
 userFields.forEach((field) => {
@@ -55,6 +57,11 @@ export default function Offerings() {
         Cell: ({ row }: any) => <span>{row.original?.amount} Rwf</span>,
       },
       {
+        Header: `${t("Year")}`,
+        accessor: "",
+        Cell: ({ row }: any) => <span>{row.original?.year ?? "N/A"} </span>,
+      },
+      {
         Header: `${t("Status")}`,
         Cell: ({ row }: any) => (
           <span
@@ -73,6 +80,19 @@ export default function Offerings() {
     ];
 
     return columns;
+  };
+
+  const generateReport = () => {
+    generatePDF({
+      columns: ["Offering Date", "Year", "Amount", "Status"],
+      title: `Offering report ${new Date().toLocaleDateString()}`,
+      data: data?.offerings?.map((offer: Offering) => [
+        new Date(offer?.createdAt).toLocaleDateString(),
+        offer.year ?? "N/A",
+        `${offer.amount} RWF`,
+        offer.status,
+      ]),
+    });
   };
 
   return (
@@ -121,6 +141,16 @@ export default function Offerings() {
               </Button>
             </>
           )}
+          <Button
+            variant="primary"
+            size="md"
+            onClick={generateReport}
+            style=" p-2 flex ml-auto rounded-sm text-white ml-10 border bg-primary text-white hover:border-primary hover:bg-white hover:text-primary shadow-sm 
+             duration-300 ease-in-out transition-all"
+          >
+            <FaFileAlt className="mt-[2px] w-6 h-5 mr-1" />
+            {t("Generate Offering Report")}
+          </Button>
         </div>
         {/* Offerings TABLE */}
         <div className="flex flex-col  lg:ml-48">

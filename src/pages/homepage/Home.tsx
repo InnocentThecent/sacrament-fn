@@ -1,5 +1,5 @@
 import NavBar from "./Header";
-import banner from "../../assets/banner.png";
+import banner from "../../assets/banner.jpg";
 import Footer from "../../layouts/Footer";
 import Carousel from "../../components/Carousel";
 const Homepage = () => {
@@ -13,8 +13,8 @@ const Homepage = () => {
         <div className="relative z-20 h-screen">
           <NavBar />
           <div className="flex justify-center items-center h-[80%]">
-            <h3 className="font-bold text-6xl text-white">
-              Parish Sacrament Monitoring System
+            <h3 className="font-bold text-5xl text-white">
+              Parish Engagement and contribution tracking System
             </h3>
           </div>
         </div>

@@ -41,7 +41,9 @@ export type User = {
 export type Offering = {
   id: number;
   amount: number;
+  year: number;
   christian: Christian;
+  status: string;
   christianId: number;
   createdAt: Date;
   updatedAt: Date;

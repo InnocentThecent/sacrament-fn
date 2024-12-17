@@ -38,14 +38,14 @@ export default function NavBar() {
             <img
               src={Logo}
               className="relative mr-3 w-64  sm:h-9"
-              alt="My psms Logo"
+              alt="My PECTS Logo"
             />
           </a>
           <div className="flex items-center lg:order-2">
             <Link
               to="/login"
               className={`text-gray-800 hover:text-primary  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  focus:outline-none 
-              ${currentRoute === '/login' && 'hidden'}`}
+              ${currentRoute === "/login" && "hidden"}`}
             >
               Log in
             </Link>
@@ -57,7 +57,9 @@ export default function NavBar() {
                  scrolling
                    ? "text-primary border hover:bg-primary hover:text-white border-primary"
                    : "text-gray-700 border border-gray-600 hover:border-primary hover:text-primary"
-               } transition duration-500 ease-in-out   ${currentRoute === '/register' && 'hidden'}
+               } transition duration-500 ease-in-out   ${
+                currentRoute === "/register" && "hidden"
+              }
               `}
             >
               Get started
