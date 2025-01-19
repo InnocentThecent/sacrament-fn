@@ -65,7 +65,7 @@ export default function ViewMember({
               </label>
               {user?.createdAt
                 ? new Date(user?.christian!.dob).toDateString()
-                : "No date of birth info"}
+                : "2/1/1999"}
             </div>
           </div>
         </div>
