@@ -10,7 +10,7 @@ export default function ViewMember({
 }: IProps & {
   user: User;
 }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -74,7 +74,7 @@ export default function ViewMember({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="  mt-2 text-base flex flex-col">
             <label htmlFor="" className="font-semibold">
-             {t("Father Name")}
+              {t("Father Name")}
             </label>
             <span>{user?.christian?.fatherName}</span>
           </div>

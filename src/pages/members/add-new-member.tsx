@@ -35,9 +35,21 @@ const AddMember = ({ d, onClose }: any) => {
   const [createFieldState, setCreateFieldState] = useState<fields>(fieldState);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value  = e.target.value;
+    // checking if dob adte is greater than day
+    if (e.target.type === "date") {
+      const date = new Date(e.target.value);
+      const today = new Date();
+      if (date > today) {
+        const label = e.target.labels ? e.target.labels[0].innerText : e.target.name;
+        toast.error(`${label} can't be in the future`);
+        value = "";
+        return;
+      }
+    }
     setCreateFieldState({
       ...createFieldState,
-      [e.target.id]: e.target.value,
+      [e.target.id]: value,
     });
   };
 

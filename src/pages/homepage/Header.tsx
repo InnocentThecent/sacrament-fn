@@ -89,9 +89,11 @@ export default function Header() {
                   {/*  {/*  {/* <!--/ / End Main Menu  */}
                 </div>
                 <div
+            
                   className={` col-lg-2 col-12 ${
                     currentRoute == "/login" && "hidden"
                   }`}
+                   
                   style={{
                     display: currentRoute == "login" ? "none" : "",
                     marginLeft: "0",
@@ -116,15 +118,18 @@ export default function Header() {
                         <option value="en">English</option>
                         <option value="kn">Ikinyarwanda</option>
                       </select>
-                    </div>
+                    </div>NSENGIYUMVA JEAN DAMOUR
                   </div>
                 </div>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
+      
+       
         {/*  {/*  {/* <!--/ / End Header Inner  */}
       </header>
+      
       {/* {/*  {/* <!--/  End Header Area  */}
     </>
   );

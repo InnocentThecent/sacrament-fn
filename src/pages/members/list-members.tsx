@@ -43,7 +43,10 @@ export default function Members() {
   }, [dispatch]);
 
   const generateData = () => {
-    return data?.users;
+    return data?.users.map((user: User) => ({
+      ...user,
+     dob: user.christian && new Date(user.christian.dob).toLocaleDateString(),
+    }));
   };
 
   const generateReport = () => {
@@ -80,6 +83,11 @@ export default function Members() {
       },
 
       {
+        Header: `${t("Date of birth")}`,
+        accessor: "dob",
+      },
+
+      {
         Header: `${t("Last Name")}`,
         accessor: "lastName",
       },
@@ -102,10 +110,12 @@ export default function Members() {
         Cell: ({ row }: any) => {
           const user = row.original as User;
           return (
-            <span>{user?.christian?.offerings?.reduce((a, b) => a + b.amount, 0)
-            } Rwf</span>
+            <span>
+              {user?.christian?.offerings?.reduce((a, b) => a + b.amount, 0)}{" "}
+              Rwf
+            </span>
           );
-        }
+        },
       },
       {
         Header: `${t("Applications")}`,

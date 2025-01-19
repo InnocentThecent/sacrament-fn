@@ -23,7 +23,7 @@ export default function Dashboard() {
     {
       title: `${t("Members")}`,
       subtitle: `${d?.users?.length ?? 0}`,
-      description: `${t("Number of Members")}`,
+      description: `${t("Number of Christians")}`,
       Icon: <GiNurseFemale />,
     },
     {
